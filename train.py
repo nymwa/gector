@@ -88,7 +88,9 @@ def get_model(model_name, vocab, tune_bert=False,
     return model
 
 
-def main(args):
+def main():
+    args = parse_args()
+
     fix_seed()
     if not os.path.exists(args.model_dir):
         os.mkdir(args.model_dir)
@@ -183,7 +185,7 @@ def main(args):
     print("Model is dumped")
 
 
-if __name__ == '__main__':
+def parse_args():
     # read parameters
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_set',
@@ -300,4 +302,8 @@ if __name__ == '__main__':
                         default=1)
 
     args = parser.parse_args()
-    main(args)
+    return args
+
+if __name__ == '__main__':
+    main()
+
